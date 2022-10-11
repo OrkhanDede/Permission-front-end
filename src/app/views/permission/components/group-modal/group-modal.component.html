@@ -1,0 +1,26 @@
+<form [formGroup]="myForm" #form="ngForm" (ngSubmit)="onSubmitForm()">
+  <c-modal [visible]="true">
+    <c-modal-header>
+      <h5 cModalTitle>Modal title</h5>
+      <button (click)="toggleLiveDemo()" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body>
+      <div class="form-group">
+        <label class="form-label-sm"> Title </label>
+        <div class="input-group">
+          <input
+            placeholder="title"
+            class="form-control form-control-sm form-control-no-borders"
+            formControlName="title"
+          />
+        </div>
+      </div>
+    </c-modal-body>
+    <c-modal-footer>
+      <button (click)="toggleLiveDemo()" cButton color="secondary">
+        Close
+      </button>
+      <button cButton color="primary" type="submit">Save changes</button>
+    </c-modal-footer>
+  </c-modal>
+</form>

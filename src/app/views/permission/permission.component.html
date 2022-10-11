@@ -1,0 +1,36 @@
+<div class="main">
+  <div class="column-1">
+    <ul class="vertical-menu">
+      <li
+        *ngFor="let group of groups"
+        [ngClass]="{ active: activeTab == group.id }"
+        (click)="onTabClick(group.id)"
+      >
+        <span class="d-flex justify-content-between">
+          <span>
+            {{ group.title }}
+          </span>
+          <span style="cursor: pointer" (click)="onClickEdit(group.id)">
+            edit
+          </span>
+        </span>
+      </li>
+    </ul>
+    <span class="d-flex justify-content-end pr-1">
+      <button cButton class="" color="primary" (click)="toggleLiveDemo()">
+        Add new group
+      </button>
+    </span>
+  </div>
+  <div class="column-2">
+    <app-role [groupId]="activeTab"></app-role>
+  </div>
+</div>
+
+<ng-container *ngIf="visible">
+  <app-group-modal
+    [group]="editableGroup"
+    (onSave)="save($event)"
+    (onClose)="closeModal($event)"
+  ></app-group-modal>
+</ng-container>

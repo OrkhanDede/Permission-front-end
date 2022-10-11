@@ -1,0 +1,47 @@
+<c-col xs="12">
+  <c-card class="mb-4">
+    <c-card-header>
+      <strong>Roles</strong>
+      <div style="display: flex; justify-content: flex-end">
+        <input
+          placeholder="Search"
+          sizing="sm"
+          type="text"
+          [(ngModel)]="search"
+          (keyup)="searchKey()"
+        />
+        <select
+          (ngModelChange)="onFilterSelect($event)"
+          [(ngModel)]="filterSelect"
+        >
+          <option value="1" selected>Show all</option>
+          <option value="2">Marked roles</option>
+        </select>
+      </div>
+    </c-card-header>
+    <c-card-body>
+      <table id="roles" cTable>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Title</th>
+        </tr>
+        <tr *ngFor="let role of roles.items">
+          <td>
+            <input
+              cFormCheckInput
+              [id]="role.id"
+              type="checkbox"
+              [checked]="role.isChecked"
+              (change)="onCheck(role.id)"
+            />
+          </td>
+          <td>{{ role.title }}</td>
+        </tr>
+      </table>
+    </c-card-body>
+    <c-card-footer>
+      <app-pagination [total]="roles.total" (onChange)="onPageChange($event)">
+      </app-pagination>
+    </c-card-footer>
+  </c-card>
+</c-col>
